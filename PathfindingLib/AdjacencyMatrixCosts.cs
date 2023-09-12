@@ -9,68 +9,59 @@ namespace PathfindingLib
 {
     internal class AdjacencyMatrixCosts: IWeightedGraphRepresentation
     {
-        private readonly BitArray[] data;
+        private readonly int[][] data;
         public int VertexCount { get; init; }
 
         public AdjacencyMatrixCosts(int vertexCount)
         {
             VertexCount = vertexCount;
-            data = new BitArray[VertexCount];
+            data = new int[vertexCount][];
 
             for (int i = 0; i < VertexCount; ++i)
-                data[i] = new BitArray(VertexCount);
+            {
+                data[i] = new int[vertexCount];
+                for (int j = 0; j < VertexCount; j++)
+                {
+                    data[i][j] = -1;
+                }
+            }
         }
 
-        public void AddEdge(int from, int to) => data[from][to] = true;
+        public void AddEdge(int from, int to, int cost) => data[from][to] = cost;
 
         public void AddEdgeBidirectional(int from, int to, int cost)
         {
-            AddEdge(from, to);
-            AddEdge(to, from);
+            AddEdge(from, to, cost);
+            AddEdge(to, from, cost);
         }
 
         public void AddEdges(int from, int[] to, int[] costs)
         {
             for (int i = 0; i < to.Length; ++i)
-                AddEdge(from, to[i]);
+                AddEdge(from, to[i], costs[i]);
         }
 
         public int CountNeighbours(int node)
         {
             int count = 0;
             for (int i = 0; i < VertexCount; ++i)
-                if (data[node][i])
+                if (data[node][i] >= 0)
                     ++count;
 
             return count;
         }
-        public void RemoveEdge(int from, int to) => data[from][to] = false;
-        public bool HasNeighbour(int nodeA, int nodeB) => data[nodeA][nodeB];
-        public IReadOnlyCollection<int> GetNeighbours(int node)
+        public void RemoveEdge(int from, int to) => data[from][to] = -1;
+        public bool HasNeighbour(int nodeA, int nodeB) => data[nodeA][nodeB] >= 0;
+        public IReadOnlyCollection<(int neighbour, int cost)> GetNeighbours(int node)
         {
-            var neighbours = new List<int>();
+            var neighbours = new List<(int neighbour, int cost)>();
             var row = data[node];
 
             for (int i = 0; i < VertexCount; ++i)
-                if (row[i])
-                    neighbours.Add(i);
+                if (row[i] >= 0)
+                    neighbours.Add((i, row[i]));
 
-            return neighbours.ToArray();
-        }
-
-        public void AddEdge(int from, int to, int cost)
-        {
-            throw new NotImplementedException();
-        }
-
-        IReadOnlyCollection<(int neighbour, int cost)> IWeightedGraphRepresentation.GetNeighbours(int node)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddEdges(int from, int[] to)
-        {
-            throw new NotImplementedException();
+            return neighbours;
         }
     }
 }

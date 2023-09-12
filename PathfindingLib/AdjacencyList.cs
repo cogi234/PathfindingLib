@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PathfindingLib
 {
-    public class AdjacencyList : IWeightedGraphRepresentation
+    public class AdjacencyList : IGraphRepresentation
     {
         private readonly SortedSet<int>[] data;
         public int VertexCount { get; init; }
