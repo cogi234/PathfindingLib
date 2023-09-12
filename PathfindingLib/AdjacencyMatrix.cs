@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PathfindingLib
 {
-    public class AdjacencyMatrix : IWeightedGraphRepresentation
+    public class AdjacencyMatrix : IGraphRepresentation
     {
         private readonly BitArray[] data;
         public int VertexCount { get; init; }

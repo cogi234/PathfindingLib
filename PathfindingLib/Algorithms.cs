@@ -8,7 +8,7 @@ namespace PathfindingLib
 {
     public static class Algorithms
     {
-        public static List<int> BFS(IWeightedGraphRepresentation graph, int startNode, int endNode)
+        public static List<int> BFS(IGraphRepresentation graph, int startNode, int endNode)
         {
             if (startNode == endNode)
                 return new List<int>() { startNode };
