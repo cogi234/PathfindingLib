@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,21 +10,18 @@ namespace PathfindingLib
 {
     public class AdjacencyListCosts : IWeightedGraphRepresentation
     {
-        private readonly Dictionary<int, int>[] data;
+        private readonly Dictionary<(int, int), int> data;
         public int VertexCount { get; init; }
 
         public AdjacencyListCosts(int vertexCount)
         {
             VertexCount = vertexCount;
-            data = new Dictionary<int, int>[vertexCount];
-
-            for (int i = 0; i < vertexCount; ++i)
-                data[i] = new Dictionary<int, int>();
+            data = new Dictionary<(int, int), int>();
         }
 
         public void AddEdge(int from, int to, int cost)
         {
-            data[from].Add(to, cost);
+            data[(from, to)] = cost;
         }
 
         public void AddEdgeBidirectional(int nodeA, int nodeB, int cost)
@@ -39,18 +38,31 @@ namespace PathfindingLib
 
         public void RemoveEdge(int from, int to)
         {
-            data[from].Remove(to);
+            data.Remove((from, to));
         }
 
-        public int CountNeighbours(int node) => data[node].Count;
-        public bool HasNeighbour(int node, int neighbour) => data[node].ContainsKey(neighbour);
+        public int CountNeighbours(int node)
+        {
+            int counter = 0;
+            for (int i = 0; i < VertexCount; ++i)
+            {
+                if (data.ContainsKey((node ,i)))
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+        public bool HasNeighbour(int node, int neighbour) => data.ContainsKey((node, neighbour));
         public IReadOnlyCollection<(int neighbour, int cost)> GetNeighbours(int node) {
             var neighbours = new List<(int neighbour, int cost)>();
-            var row = data[node];
-
-            foreach (KeyValuePair<int,int> kv in row)
+            for (int i = 0; i < VertexCount; ++i)
             {
-                neighbours.Add((kv.Key, kv.Value));
+                (int, int) keys = data.Keys.ElementAt(i);
+                if (data.ContainsKey((node, i)))
+                {
+                    neighbours.Add((i, data[(node, i)]));
+                }
             }
 
             return neighbours;
