@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PathfindingLib
 {
-    internal interface IWeightedGraphRepresentation
+    public interface IWeightedGraphRepresentation
     {
 
         public int VertexCount { get; }
