@@ -67,35 +67,34 @@ namespace PathfindingLib
         {
             if (startNode == endNode)
                 return new List<int>() { startNode };
-            var cost_so_far = new int[graph.VertexCount];
-            cost_so_far[startNode] = 0;
-            var frontier = new PriorityQueue<int,int>();
-            var cameFrom = new int[graph.VertexCount];
-            Array.Fill(cameFrom, -1);
 
+            PriorityQueue<int, int> frontier = new PriorityQueue<int,int>();
+            int[] cameFrom = new int[graph.VertexCount];
+            int[] costSoFar = new int[graph.VertexCount];
+
+            Array.Fill(cameFrom, -1);
+            Array.Fill(costSoFar, int.MaxValue);
             frontier.Enqueue(startNode, 0);
+            costSoFar[startNode] = 0;
 
             while (frontier.Count > 0)
             {
                 int current = frontier.Dequeue();
                 IEnumerable<(int neighbour, int cost)> currentNeighbours = graph.GetNeighbours(current);
 
+                if (current == endNode)
+                    return BuildShortestPath(startNode, endNode, cameFrom);
+
                 for (int i = 0; i < currentNeighbours.Count(); ++i)
                 {
-                    (int,int) next = currentNeighbours.ElementAt(i);
+                    (int neighbour, int cost) next = currentNeighbours.ElementAt(i);
+                    int newCost = costSoFar[current] + next.cost;
 
-                    if (next.Item1 == endNode)
+                    if (costSoFar[next.neighbour] > newCost)
                     {
-
-                        cameFrom[next.Item1] = current;
-                        return BuildShortestPath(startNode, endNode, cameFrom);
-                    }
-
-                    if (cameFrom[next.Item1] == -1)
-                    {
-                        cost_so_far[next.Item1] = cost_so_far[next.Item1]+next.Item2;
-                        frontier.Enqueue(next.Item1,next.Item2 + cost_so_far[next.Item1]);
-                        cameFrom[next.Item1] = current;
+                        costSoFar[next.neighbour] = newCost;
+                        frontier.Enqueue(next.neighbour, newCost);
+                        cameFrom[next.neighbour] = current;
                     }
                 }
             }
