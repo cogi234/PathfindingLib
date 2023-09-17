@@ -102,7 +102,7 @@ namespace PathfindingLib
             return new List<int>();
         }
 
-        public static List<int> AStar(Func<int, int, int> funcky, IWeightedGraphRepresentation graph, int startNode, int endNode)
+        public static List<int> AStar(Func<int, int, int> heuristic, IWeightedGraphRepresentation graph, int startNode, int endNode)
         {
             if (startNode == endNode)
                 return new List<int>() { startNode };
@@ -132,7 +132,7 @@ namespace PathfindingLib
                     if (costSoFar[next.neighbour] > newCost)
                     {
                         costSoFar[next.neighbour] = newCost;
-                        frontier.Enqueue(next.neighbour, newCost + funcky(endNode,current));
+                        frontier.Enqueue(next.neighbour, newCost + heuristic(endNode,current));
                         cameFrom[next.neighbour] = current;
                     }
                 }

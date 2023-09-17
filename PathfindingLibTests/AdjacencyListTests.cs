@@ -2,7 +2,7 @@ using PathfindingLib;
 
 namespace PathfindingLibTests
 {
-    public class Tests
+    public class AdjacencyListTests
     {
         private AdjacencyList adjacencyList = new AdjacencyList(10);
 

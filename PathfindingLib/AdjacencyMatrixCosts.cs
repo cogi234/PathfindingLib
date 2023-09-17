@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PathfindingLib
 {
-    internal class AdjacencyMatrixCosts: IWeightedGraphRepresentation
+    public class AdjacencyMatrixCosts: IWeightedGraphRepresentation
     {
         private readonly int[][] data;
         public int VertexCount { get; init; }
