@@ -51,7 +51,7 @@ namespace PathfindingLibTests
         {
             bool isCorrectNumberNeighbours = true;
             int[] correctNumbers = { 2, 2, 3, 3, 4,
-                                     2, 2, 2, 2, 2,3 };
+                                     2, 2, 3, 2, 2,3 };
 
             for (int i = 0; i < correctNumbers.Length; ++i)
             {
@@ -68,10 +68,10 @@ namespace PathfindingLibTests
         [Test]
         public void ValideGetNeighbour()
         {
-            Console.WriteLine("allo");
+           
             bool isCorrectContains = true;
             int[] nodesWithNeighbours = { 0, 1, 7 };
-            int[] nNeighboursPerNode = { 2, 2, 3 };
+            
             int[] neighbours = { 1,2,
                                  0, 3,
                                  4, 6, 10 };
@@ -79,14 +79,15 @@ namespace PathfindingLibTests
             int currentTestingNeighbourIndex = 0;
             for (int i = 0; i < nodesWithNeighbours.Length; ++i)
             {
-                int nCurrentNodeNeighbours = nNeighboursPerNode[i];
+                
                 data  = adjacencyListCosts.GetNeighbours(nodesWithNeighbours[i]);
-                for (int j = 0; j < data.Count(); ++j)
+                Console.WriteLine($"Data: {data}");
+                foreach ((int voisin , int) alo in  data)
                 {
-                    
-                    if (data.ElementAt(j).neighbour == neighbours[currentTestingNeighbourIndex])
+                   
+                    if (alo.voisin != neighbours[currentTestingNeighbourIndex])
                     {
-                        Console.WriteLine($"Invalid neighbour: {data.ElementAt(j).neighbour},{neighbours[currentTestingNeighbourIndex]}");
+                        
                         isCorrectContains = false;
                         break;
                     }
