@@ -43,15 +43,7 @@ namespace PathfindingLib
 
         public int CountNeighbours(int node)
         {
-            int counter = 0;
-            for (int i = 0; i < VertexCount; ++i)
-            {
-                if (data.ContainsKey((node ,i)))
-                {
-                    counter++;
-                }
-            }
-            return counter;
+            return data.Count((KeyValuePair<(int, int), int> kv) => { return kv.Key.Item1 == node; });
         }
         public bool HasNeighbour(int node, int neighbour) => data.ContainsKey((node, neighbour));
         public IReadOnlyCollection<(int neighbour, int cost)> GetNeighbours(int node) {
