@@ -8,13 +8,13 @@ using PathfindingLib;
 
 namespace PathfindingLibTests
 {
-    internal class AlgorithmsTests
+    public class AlgorithmsTests
     {
         Vector2[] positions = new Vector2[11];
-        private AdjacencyListCosts adjacencyListCosts = new AdjacencyListCosts(11);
-        private AdjacencyMatrixCosts adjacencyMatrixCosts = new AdjacencyMatrixCosts(11);
-        private AdjacencyList adjacencyList = new AdjacencyList(11);
-        private AdjacencyMatrix adjacencyMatrix = new AdjacencyMatrix(11);
+        AdjacencyListCosts adjacencyListCosts = new AdjacencyListCosts(11);
+        AdjacencyMatrixCosts adjacencyMatrixCosts = new AdjacencyMatrixCosts(11);
+        AdjacencyList adjacencyList = new AdjacencyList(11);
+        AdjacencyMatrix adjacencyMatrix = new AdjacencyMatrix(11);
         List<int> correctPathCosts = new List<int>();
         int correctPathLength = 5; //0 - 2 - 4 - 7 - 10 ou  1 - 2 - 4 - 8 - 10
 
@@ -51,7 +51,6 @@ namespace PathfindingLibTests
             adjacencyListCosts.AddEdgeBidirectional(5, 9, Distance(5, 9));
             adjacencyListCosts.AddEdgeBidirectional(6, 7, Distance(6, 7));
             adjacencyListCosts.AddEdgeBidirectional(7, 10, Distance(7, 10));
-            adjacencyListCosts.AddEdgeBidirectional(7, 10, Distance(7, 10));
             adjacencyListCosts.AddEdgeBidirectional(8, 10, Distance(8, 10));
             adjacencyListCosts.AddEdgeBidirectional(9, 10, Distance(9, 10));
 
@@ -66,7 +65,6 @@ namespace PathfindingLibTests
             adjacencyMatrixCosts.AddEdgeBidirectional(4, 8, Distance(4, 8));
             adjacencyMatrixCosts.AddEdgeBidirectional(5, 9, Distance(5, 9));
             adjacencyMatrixCosts.AddEdgeBidirectional(6, 7, Distance(6, 7));
-            adjacencyMatrixCosts.AddEdgeBidirectional(7, 10, Distance(7, 10));
             adjacencyMatrixCosts.AddEdgeBidirectional(7, 10, Distance(7, 10));
             adjacencyMatrixCosts.AddEdgeBidirectional(8, 10, Distance(8, 10));
             adjacencyMatrixCosts.AddEdgeBidirectional(9, 10, Distance(9, 10));
@@ -83,7 +81,6 @@ namespace PathfindingLibTests
             adjacencyList.AddEdgeBidirectional(5, 9);
             adjacencyList.AddEdgeBidirectional(6, 7);
             adjacencyList.AddEdgeBidirectional(7, 10);
-            adjacencyList.AddEdgeBidirectional(7, 10);
             adjacencyList.AddEdgeBidirectional(8, 10);
             adjacencyList.AddEdgeBidirectional(9, 10);
 
@@ -98,7 +95,6 @@ namespace PathfindingLibTests
             adjacencyMatrix.AddEdgeBidirectional(4, 8);
             adjacencyMatrix.AddEdgeBidirectional(5, 9);
             adjacencyMatrix.AddEdgeBidirectional(6, 7);
-            adjacencyMatrix.AddEdgeBidirectional(7, 10);
             adjacencyMatrix.AddEdgeBidirectional(7, 10);
             adjacencyMatrix.AddEdgeBidirectional(8, 10);
             adjacencyMatrix.AddEdgeBidirectional(9, 10);
@@ -131,6 +127,7 @@ namespace PathfindingLibTests
         }
 
         [Test]
+
         public void ValidAdjacencyListCostsDijkstraPath()
         {
             List<int> foundPath = Algorithms.Dijkstra(adjacencyListCosts, 0, 10);
