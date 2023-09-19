@@ -15,6 +15,10 @@ namespace PathfindingLib
 
         public AdjacencyListCosts(int vertexCount)
         {
+            if (vertexCount < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(vertexCount));
+            }
             VertexCount = vertexCount;
             data = new Dictionary<(int, int), int>();
         }
