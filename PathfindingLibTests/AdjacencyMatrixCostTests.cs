@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PathfindingLibTests
 {
-    internal class adjencyMatrixCostTest
+    public class AdjacencyMatrixCostTests
     {
         [Test]
         public void AddEdgeTest()
@@ -40,7 +40,7 @@ namespace PathfindingLibTests
         }
 
         [Test]
-        public void NeightboursTest()
+        public void NeighboursTest()
         {
             AdjacencyMatrixCosts matrixCost = new AdjacencyMatrixCosts(12);
             matrixCost.AddEdge(1, 3, 4);

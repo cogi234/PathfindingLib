@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PathfindingLibTests
 {
-    internal class adjacencyListeCostTest
+    public class AdjacencyListCostTests
     {
        
         private AdjacencyListCosts adjacencyListCosts = new AdjacencyListCosts(10);
@@ -66,7 +66,7 @@ namespace PathfindingLibTests
         }
 
         [Test]
-        public void ValideGetNeighbour()
+        public void ValidGetNeighbour()
         {
            
             bool isCorrectContains = true;
