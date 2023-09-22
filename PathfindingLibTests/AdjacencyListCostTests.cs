@@ -81,7 +81,6 @@ namespace PathfindingLibTests
             {
                 
                 data  = adjacencyListCosts.GetNeighbours(nodesWithNeighbours[i]);
-                Console.WriteLine($"Data: {data}");
                 foreach ((int voisin , int) alo in  data)
                 {
                    
