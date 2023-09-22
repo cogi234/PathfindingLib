@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace PathfindingLib
+﻿namespace PathfindingLib
 {
     public static class Algorithms
     {
@@ -68,7 +59,7 @@ namespace PathfindingLib
             if (startNode == endNode)
                 return new List<int>() { startNode };
 
-            PriorityQueue<int, int> frontier = new PriorityQueue<int,int>();
+            PriorityQueue<int, int> frontier = new PriorityQueue<int, int>();
             int[] cameFrom = new int[graph.VertexCount];
             int[] costSoFar = new int[graph.VertexCount];
 
@@ -132,7 +123,7 @@ namespace PathfindingLib
                     if (costSoFar[next.neighbour] > newCost)
                     {
                         costSoFar[next.neighbour] = newCost;
-                        frontier.Enqueue(next.neighbour, newCost + heuristic(endNode,current));
+                        frontier.Enqueue(next.neighbour, newCost + heuristic(endNode, current));
                         cameFrom[next.neighbour] = current;
                     }
                 }

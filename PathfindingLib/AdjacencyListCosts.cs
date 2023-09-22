@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PathfindingLib
+﻿namespace PathfindingLib
 {
     public class AdjacencyListCosts : IWeightedGraphRepresentation
     {
@@ -64,7 +56,8 @@ namespace PathfindingLib
             return data.Count((KeyValuePair<(int, int), int> kv) => { return kv.Key.Item1 == node; });
         }
         public bool HasNeighbour(int node, int neighbour) => data.ContainsKey((node, neighbour));
-        public IReadOnlyCollection<(int neighbour, int cost)> GetNeighbours(int node) {
+        public IReadOnlyCollection<(int neighbour, int cost)> GetNeighbours(int node)
+        {
             var neighbours = new List<(int neighbour, int cost)>();
             for (int i = 0; i < VertexCount; ++i)
             {

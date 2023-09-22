@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PathfindingLib
+﻿namespace PathfindingLib
 {
-    public class AdjacencyMatrixCosts: IWeightedGraphRepresentation
+    public class AdjacencyMatrixCosts : IWeightedGraphRepresentation
     {
         private readonly int[][] data;
         public int VertexCount { get; init; }

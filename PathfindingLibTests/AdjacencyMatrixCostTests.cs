@@ -2,12 +2,6 @@
  *but: test the big code
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace PathfindingLibTests
 {
     public class AdjacencyMatrixCostTests

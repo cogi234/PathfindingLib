@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace PathfindingLib
 {
@@ -23,7 +17,7 @@ namespace PathfindingLib
         }
 
         public void AddEdge(int from, int to) => data[from][to] = true;
-        
+
         public void AddEdgeBidirectional(int from, int to)
         {
             AddEdge(from, to);

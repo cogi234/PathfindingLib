@@ -1,20 +1,13 @@
-﻿using PathfindingLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PathfindingLibTests
+﻿namespace PathfindingLibTests
 {
     public class AdjacencyListCostTests
     {
-       
+
         private AdjacencyListCosts adjacencyListCosts = new AdjacencyListCosts(10);
         [SetUp]
         public void Setup()
         {
-             
+
 
             adjacencyListCosts.AddEdgeBidirectional(0, 1, 1);
             adjacencyListCosts.AddEdgeBidirectional(0, 2, 1);
@@ -28,7 +21,7 @@ namespace PathfindingLibTests
             adjacencyListCosts.AddEdgeBidirectional(5, 9, 1);
             adjacencyListCosts.AddEdgeBidirectional(6, 7, 1);
             adjacencyListCosts.AddEdgeBidirectional(7, 10, 1);
-            
+
             adjacencyListCosts.AddEdgeBidirectional(8, 10, 1);
             adjacencyListCosts.AddEdgeBidirectional(9, 10, 1);
         }
@@ -68,10 +61,10 @@ namespace PathfindingLibTests
         [Test]
         public void ValidGetNeighbour()
         {
-           
+
             bool isCorrectContains = true;
             int[] nodesWithNeighbours = { 0, 1, 7 };
-            
+
             int[] neighbours = { 1,2,
                                  0, 3,
                                  4, 6, 10 };
@@ -79,14 +72,14 @@ namespace PathfindingLibTests
             int currentTestingNeighbourIndex = 0;
             for (int i = 0; i < nodesWithNeighbours.Length; ++i)
             {
-                
-                data  = adjacencyListCosts.GetNeighbours(nodesWithNeighbours[i]);
-                foreach ((int voisin , int) alo in  data)
+
+                data = adjacencyListCosts.GetNeighbours(nodesWithNeighbours[i]);
+                foreach ((int voisin, int) alo in data)
                 {
-                   
+
                     if (alo.voisin != neighbours[currentTestingNeighbourIndex])
                     {
-                        
+
                         isCorrectContains = false;
                         break;
                     }
@@ -113,7 +106,7 @@ namespace PathfindingLibTests
                 {
                     if (!adjacencyListCosts.HasNeighbour(nodesWithNeighbours[i], neighbours[currentTestingNeighbourIndex]))
                     {
-                        
+
                         isCorrectContains = false;
                         break;
                     }

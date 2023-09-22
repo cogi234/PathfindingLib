@@ -1,5 +1,3 @@
-using PathfindingLib;
-
 namespace PathfindingLibTests
 {
     public class AdjacencyListTests
