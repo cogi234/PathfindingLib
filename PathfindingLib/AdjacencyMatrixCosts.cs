@@ -28,17 +28,28 @@ namespace PathfindingLib
         }
 
         public void AddEdge(int from, int to, int cost) => data[from][to] = cost;
+        public void AddEdge(int from, int to) => data[from][to] = 1;
 
         public void AddEdgeBidirectional(int from, int to, int cost)
         {
             AddEdge(from, to, cost);
             AddEdge(to, from, cost);
         }
+        public void AddEdgeBidirectional(int from, int to)
+        {
+            AddEdge(from, to);
+            AddEdge(to, from);
+        }
 
         public void AddEdges(int from, int[] to, int[] costs)
         {
             for (int i = 0; i < to.Length; ++i)
                 AddEdge(from, to[i], costs[i]);
+        }
+        public void AddEdges(int from, int[] to)
+        {
+            for (int i = 0; i < to.Length; ++i)
+                AddEdge(from, to[i]);
         }
 
         public int CountNeighbours(int node)
@@ -60,6 +71,17 @@ namespace PathfindingLib
             for (int i = 0; i < VertexCount; ++i)
                 if (row[i] >= 0)
                     neighbours.Add((i, row[i]));
+
+            return neighbours;
+        }
+        IReadOnlyCollection<int> IGraphRepresentation.GetNeighbours(int node)
+        {
+            var neighbours = new List<int>();
+            var row = data[node];
+
+            for (int i = 0; i < VertexCount; ++i)
+                if (row[i] >= 0)
+                    neighbours.Add(i);
 
             return neighbours;
         }
