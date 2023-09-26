@@ -1,4 +1,10 @@
-﻿namespace PathfindingLib
+﻿using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System;
+using Pathfinding;
+
+namespace PathfindingLib
 {
     public static class Algorithms
     {
@@ -54,6 +60,7 @@
             return shortestPath;
         }
 
+       
         public static List<int> Dijkstra(IWeightedGraphRepresentation graph, int startNode, int endNode)
         {
             if (startNode == endNode)

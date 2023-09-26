@@ -1,5 +1,5 @@
 .vs/
-PathfindingLib/bin/
-PathfindingLib/obj/
-PathfindingLibTests/bin/
-PathfindingLibTests/obj/
+Pathfinding/bin/
+Pathfinding/obj/
+PathfindingTests/bin/
+PathfindingTests/obj/

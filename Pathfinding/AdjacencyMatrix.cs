@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
+using System.Collections;
 
 namespace PathfindingLib
 {
     public class AdjacencyMatrix : IGraphRepresentation
     {
         private readonly BitArray[] data;
-        public int VertexCount { get; init; }
+        public int VertexCount { get; private set; }
 
         public AdjacencyMatrix(int vertexCount)
         {

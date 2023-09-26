@@ -1,9 +1,14 @@
-﻿namespace PathfindingLib
+﻿using System.Collections.Generic;
+using System.Collections;
+using System;
+using System.Linq;
+
+namespace PathfindingLib
 {
     public class AdjacencyListCosts : IWeightedGraphRepresentation
     {
         private readonly Dictionary<(int, int), int> data;
-        public int VertexCount { get; init; }
+        public int VertexCount { get; private set; }
 
         public AdjacencyListCosts(int vertexCount)
         {
@@ -53,7 +58,7 @@
 
         public int CountNeighbours(int node)
         {
-            return data.Count((KeyValuePair<(int, int), int> kv) => { return kv.Key.Item1 == node; });
+            return data.Count<KeyValuePair<(int, int), int>>((KeyValuePair<(int, int), int> kv) => { return kv.Key.Item1 == node; });
         }
         public bool HasNeighbour(int node, int neighbour) => data.ContainsKey((node, neighbour));
         public IReadOnlyCollection<(int neighbour, int cost)> GetNeighbours(int node)

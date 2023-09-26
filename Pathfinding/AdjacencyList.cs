@@ -1,9 +1,12 @@
-﻿namespace PathfindingLib
+﻿using System.Collections.Generic;
+using System.Collections;
+
+namespace PathfindingLib
 {
     public class AdjacencyList : IGraphRepresentation
     {
         private readonly SortedSet<int>[] data;
-        public int VertexCount { get; init; }
+        public int VertexCount { get; private set; }
 
         public AdjacencyList(int vertexCount)
         {

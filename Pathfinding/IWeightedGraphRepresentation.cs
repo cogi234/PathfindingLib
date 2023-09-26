@@ -1,4 +1,9 @@
-﻿namespace PathfindingLib
+﻿using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System;
+
+namespace PathfindingLib
 {
     public interface IWeightedGraphRepresentation : IGraphRepresentation
     {

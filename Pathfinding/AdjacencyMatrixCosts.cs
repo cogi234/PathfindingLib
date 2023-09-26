@@ -1,9 +1,12 @@
-﻿namespace PathfindingLib
+﻿using System.Collections.Generic;
+using System.Collections;
+
+namespace PathfindingLib
 {
     public class AdjacencyMatrixCosts : IWeightedGraphRepresentation
     {
         private readonly int[][] data;
-        public int VertexCount { get; init; }
+        public int VertexCount { get; private set; }
 
         public AdjacencyMatrixCosts(int vertexCount)
         {
